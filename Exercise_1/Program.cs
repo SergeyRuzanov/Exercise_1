@@ -14,7 +14,7 @@ namespace Exercise_1
 
             try
             {
-                using (StreamReader sr = new StreamReader(pathInput)) //TODO try - catch
+                using (StreamReader sr = new StreamReader(pathInput))
                 {
                     interlocutorName = GetInterlocutorName(sr.ReadLine());
                     using (StreamWriter sw = new StreamWriter(pathOutput, false))
@@ -43,6 +43,12 @@ namespace Exercise_1
                 Console.WriteLine($"Файл {pathInput} не найден!");
                 Console.ForegroundColor = ConsoleColor.White;
             }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Во время преобразования произошла ошибка. Проверьте входные данные.");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
 
             Console.ReadLine();
         }
@@ -62,7 +68,7 @@ namespace Exercise_1
         static string TransformToIndirect(string str, string name)
         {
             int lastIndex = str.Length - 1;
-            if (str[lastIndex] == '.' || (str[lastIndex] != '!' && str[lastIndex] != '?'))//TODO minimization
+            if (str[lastIndex] == '.' || (str[lastIndex] != '!' && str[lastIndex] != '?'))
             {
                 str.TrimEnd('.');
                 str += ',';
